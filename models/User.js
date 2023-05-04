@@ -1,30 +1,57 @@
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
+const bcrypt = require("bcrypt");
 
-class Category extends Model {}
+class User extends Model {}
 
-Category.init(
+User.init(
   {
-    // define columns( id:,category_name:)
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    category_name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [6],
+      },
+    },
   },
   {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        try {
+          newUserData.password = await bcrypt.hash(newUserData.password, 10);
+          return newUserData;
+        } catch (err) {
+          console.log(err);
+          return err;
+        }
+      },
+    },
+
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "category",
+    modelName: "user",
   }
 );
 
-module.exports = Category;
+module.exports = User;

@@ -3,23 +3,6 @@ const BlogPost = require("./BlogPost");
 const Comment = require("./Comment");
 const User = require("./User");
 
-// User
-
-// has many BlogPosts//
-// has many Comments//
-
-// BlogPost
-
-// belongs to User//
-// has many Comments//
-
-// Comment
-
-// belongs to User//
-// belongs to BlogPost//
-
-// Products belongsTo Category
-
 //user to blogpost relationship
 User.hasMany(BlogPost, {
   foreignKey: "user_id",

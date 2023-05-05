@@ -1,38 +1,43 @@
-const { Product } = require("../models");
+const { comment } = require("../models");
 
-const productData = [
+const commentData = [
   {
-    product_name: "Plain T-Shirt",
-    price: 14.99,
-    stock: 14,
-    category_id: 1,
+    content: "Great post, thanks for sharing!",
+    author: "John Doe",
+    comment_date: "2023-05-05 09:30:00",
+    user_id: 2,
+    blogpost_id: 3,
   },
   {
-    product_name: "Running Sneakers",
-    price: 90.0,
-    stock: 25,
-    category_id: 5,
+    content: "I found this post really helpful, thanks!",
+    author: "Jane Smith",
+    comment_date: "2023-05-05 16:45:00",
+    user_id: 1,
+    blogpost_id: 2,
   },
   {
-    product_name: "Branded Baseball Hat",
-    price: 22.99,
-    stock: 12,
-    category_id: 4,
+    content: "This post is spot on, I completely agree!",
+    author: "Sara Johnson",
+    comment_date: "2023-05-05 11:20:00",
+    user_id: 3,
+    blogpost_id: 1,
   },
   {
-    product_name: "Top 40 Music Compilation Vinyl Record",
-    price: 12.99,
-    stock: 50,
-    category_id: 3,
+    content: "Thanks for the informative post!",
+    author: "David Lee",
+    comment_date: "2023-05-05 14:10:00",
+    user_id: 4,
+    blogpost_id: 4,
   },
   {
-    product_name: "Cargo Shorts",
-    price: 29.99,
-    stock: 22,
-    category_id: 2,
+    content: "I have a question about this post, can you clarify?",
+    author: "Emily Chen",
+    comment_date: "2023-05-05 08:00:00",
+    user_id: 5,
+    blogpost_id: 5,
   },
 ];
 
-const seedProducts = () => Product.bulkCreate(productData);
+const seedComments = () => comment.bulkCreate(commentData);
 
-module.exports = seedProducts;
+module.exports = seedComments;

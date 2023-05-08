@@ -1,10 +1,16 @@
-<section class="card">
-  <a href="/painting/{{id}}">
-    <header>{{title}}</header>
-
-    <div class="card-body">
-      <img src="/images/{{filename}}" alt="{{description}}">
-      <p>By: {{artist}}</p>
+<div class="edit-blog-post">
+  <form class="form edit-blog-post-form">
+    <input type="hidden" id="blogpost-id" value="{{id}}">
+    <div class="form-group">
+      <label for="blogpost-title">Title:</label>
+      <input class="form-input" type="text" id="blogpost-title" value="{{blogpost_title}}" />
     </div>
-  </a>
-</section>
+    <div class="form-group">
+      <label for="blogpost-content">Content:</label>
+      <textarea class="form-input" id="blogpost-content">{{blogpost_content}}</textarea>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>

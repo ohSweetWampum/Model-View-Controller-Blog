@@ -1,8 +1,13 @@
-<section class="painting">
-  <img src="/images/{{painting.filename}}" alt="{{painting.description}}">
-  <div class="painting-details">
-    <h3>{{painting.title}}</h3>
-    <p>By: {{painting.artist}}</p>
-    <p>Exhibition open until: {{ format_date painting.exhibition_date}}</p>
-  </div>
-</section>
+<div class="blogpost">
+  <h2>{{blogpost_title}}</h2>
+  <p>By {{author}}</p>
+  <p>{{creation_date}}</p>
+  <p>{{blogpost_content}}</p>
+</div>
+{{#if isAuthor}}
+  <a href="/edit/{{id}}">Edit</a>
+  <button id="delete-blogpost">Delete</button>
+  <script src="/js/deleteBlogPost.js"></script>
+{{/if}}
+<h3>Comments:</h3>
+{{> viewComments}}

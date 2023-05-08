@@ -2,18 +2,6 @@ const router = require("express").Router();
 const { BlogPost, User, Comment } = require("../../models");
 const { authRequired } = require("../../utils/authenticator");
 
-// Get all blog posts
-router.get("/", async (req, res) => {
-  try {
-    const getAllBlogPosts = await BlogPost.findAll({
-      include: [{ model: User, attributes: ["username"] }],
-    });
-    res.status(200).json(getAllBlogPosts);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // Get a single blog post by its `id`
 router.get("/:id", async (req, res) => {
   try {
@@ -35,6 +23,17 @@ router.get("/:id", async (req, res) => {
     }
 
     res.status(200).json(findBlogPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// Get all blog posts
+router.get("/", async (req, res) => {
+  try {
+    const getAllBlogPosts = await BlogPost.findAll({
+      include: [{ model: User, attributes: ["username"] }],
+    });
+    res.status(200).json(getAllBlogPosts);
   } catch (err) {
     res.status(500).json(err);
   }

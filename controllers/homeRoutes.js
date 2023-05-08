@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { BlogPost, User } = require("../models");
-const { authRequired } = require("../../utils/authenticator");
+const { authRequired } = require("../utils/authenticator");
 
 // Render homepage with all blog posts
 router.get("/", async (req, res) => {
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
     const blogposts = allTheBlogPosts.map((post) => post.get({ plain: true }));
 
-    res.render("homepage", {
+    res.render("mainPage", {
       blogposts,
       loggedIn: req.session.loggedIn,
     });
@@ -55,7 +55,7 @@ router.get("/dashboard", authRequired, async (req, res) => {
 // GET for new article page
 router.get("/new", authRequired, async (req, res) => {
   try {
-    res.render("add-article", {
+    res.render("createBlogPost", {
       loggedIn: req.session.loggedIn,
       username: req.session.username,
       userid: req.session.userId,
@@ -73,7 +73,7 @@ router.get("/login", (req, res) => {
     res.redirect("/dashboard");
     return;
   }
-  res.render("login");
+  res.render("userLogin");
 });
 
 module.exports = router;

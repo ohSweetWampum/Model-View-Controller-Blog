@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { BlogPost, User, Comment } = require("../../models");
-const authRequired = require("../../utils/auth");
+const { authRequired } = require("../../utils/authenticator");
 
 // Get all blog posts
 router.get("/", async (req, res) => {
@@ -28,7 +28,9 @@ router.get("/:id", async (req, res) => {
     });
 
     if (!findBlogPost) {
-      res.status(404).json({ message: "We couldn't find a blog post with that id" });
+      res
+        .status(404)
+        .json({ message: "We couldn't find a blog post with that id" });
       return;
     }
 
@@ -39,19 +41,24 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create a new blog post
-router.post("/", authRequired, async (req, res) => {
-  try {
-    const newBlogPost = await BlogPost.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
+router.post(
+  "/",
+  /*authRequired,*/ async (req, res) => {
+    try {
+      const newBlogPost = await BlogPost.create({
+        ...req.body,
+        user_id: req.session.user_id,
+      });
 
-    res.status(200).json(newBlogPost);
-  } catch (err) {
-    res.status(400).json(err);
+      res.status(200).json(newBlogPost);
+    } catch (err) {
+      res.status(400).json(err);
+    }
   }
-});
-
+);
+console.log("router:", router);
+console.log("authRequired:", authRequired);
+console.log("BlogPost:", BlogPost);
 // Update a blog post by its `id`
 router.put("/:id", authRequired, async (req, res) => {
   try {
@@ -61,8 +68,10 @@ router.put("/:id", authRequired, async (req, res) => {
       },
     });
 
-    if (!uupdateBlogPost[0]) {
-      res.status(404).json({ message: "We couldn't find a blog post with that id" });
+    if (!updateBlogPost[0]) {
+      res
+        .status(404)
+        .json({ message: "We couldn't find a blog post with that id" });
       return;
     }
 
@@ -82,7 +91,9 @@ router.delete("/:id", authRequired, async (req, res) => {
     });
 
     if (!deleteBlogPost) {
-      res.status(404).json({ message: "We couldn't find a blog post with that id" });
+      res
+        .status(404)
+        .json({ message: "We couldn't find a blog post with that id" });
       return;
     }
 

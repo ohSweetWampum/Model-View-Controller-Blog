@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User } = require("../../models");
-const authRequired = require("../../utils/auth");
+const { authRequired } = require("../../utils/authenticator");
 
 // Register a new user
 router.post("/register", async (req, res) => {
@@ -27,18 +27,18 @@ router.post("/login", async (req, res) => {
     });
 
     if (!loginUser) {
-      res
-        .status(400)
-        .json({ message: "Incorrect username or/and password. Please enter again." });
+      res.status(400).json({
+        message: "Incorrect username or/and password. Please enter again.",
+      });
       return;
     }
 
     const validPassword = await loginUser.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect username or/and password. Please enter again." });
+      res.status(400).json({
+        message: "Incorrect username or/and password. Please enter again.",
+      });
       return;
     }
 

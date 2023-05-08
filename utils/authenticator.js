@@ -6,13 +6,4 @@ const authRequired = (req, res, next) => {
   }
 };
 
-const authNotRequired = (req, res, next) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  } else {
-    next();
-  }
-};
-
-module.exports = { authRequired, authNotRequired };
+module.exports = { authRequired };

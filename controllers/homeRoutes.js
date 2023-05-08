@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { BlogPost, User, Comment } = require("../models");
-const authRequired = require("../utils/auth");
+const { BlogPost, User } = require("../models");
+const { authRequired } = require("../../utils/authenticator");
 
 // Render homepage with all blog posts
 router.get("/", async (req, res) => {

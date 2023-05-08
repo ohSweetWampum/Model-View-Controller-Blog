@@ -26,7 +26,7 @@ BlogPost.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    author: {
+    username: {
       type: DataTypes.STRING,
       references: {
         model: "user",

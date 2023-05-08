@@ -19,11 +19,11 @@ BlogPost.belongsTo(User, {
 });
 // blogpost to comment relationship
 BlogPost.hasMany(Comment, {
-  foreignKey: "user_id",
+  foreignKey: "blogpost_id",
 });
 // comment to user relationship
 Comment.belongsTo(User, {
-  foreignKey: "blogpost_id",
+  foreignKey: "user_id",
 });
 // comment to blogpost relationship
 Comment.belongsTo(BlogPost, {

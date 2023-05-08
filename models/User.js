@@ -51,6 +51,12 @@ User.init(
     freezeTableName: true,
     underscored: true,
     modelName: "user",
+    indexes: [
+      {
+        unique: true,
+        fields: ["username"],
+      },
+    ],
   }
 );
 

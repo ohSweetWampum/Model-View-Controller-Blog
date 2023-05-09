@@ -25,6 +25,34 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Render a single blog post by its `id`
+router.get("/blogposts/:id", async (req, res) => {
+  try {
+    const findBlogPost = await BlogPost.findByPk(req.params.id, {
+      include: [
+        { model: User, attributes: ["username"] },
+        // Add any other associations here, e.g., comments
+      ],
+    });
+
+    if (!findBlogPost) {
+      res
+        .status(404)
+        .json({ message: "We couldn't find a blog post with that id" });
+      return;
+    }
+
+    const blogpost = findBlogPost.get({ plain: true });
+
+    res.render("viewSingleBlogPost", {
+      blogpost,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Render dashboard with user's blog posts
 router.get("/dashboard", authRequired, async (req, res) => {
   try {

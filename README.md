@@ -1,31 +1,22 @@
 # Model-View-Controller-Blog
 
-This is the back-end of a shopping website
+This is a tech blog
 
 ## Website
 
-[Click here to watch a video demo](https://drive.google.com/file/d/1Fvk_3knhg5utdPcn7OCdCTom6Aj0RylA/view)
+[Click here to visit deployed site](https://model-view-controller-blog88.herokuapp.com/)
 
 ## Description
 
-This app is a simple tool for managing an online store. It helps with adding, updating, and removing products, categories, and tags in a database. It uses popular web technologies like Express.js and MySQL to make things work smoothly. The app has an easy-to-use interface for developers to interact with the data and test how it works. Overall, it's a helpful tool for keeping an online store organized and up-to-date.
-
-## Installation
-
-1. Need to install Node.js, MySQL2, Express.js, Sequelize, and Dotenv
-2. Creat and .env file with your credentials
-3. In command lin, enter "mysql -u root -p", then enter mysql password.
-4. Enter "source db/schema.sql;", then quit.
-5. Enter "npm run seed", the enter "npm start".
+The Tech Blog project is a CMS-style blogging site designed for developers to publish their blog posts and engage in discussions through commenting on other developers’ posts. The application follows the Model-View-Controller (MVC) paradigm and uses Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication. Users can create an account, log in, create and edit blog posts, leave comments on posts, and delete comments or posts. The application also features automatic logout for inactive users.
 
 ## Table of Contents
 
 - [Website](#website)
 - [Description](#description)
-- [Installation](#installation)
 - [Technology](#technology)
 - [Usage](#usage)
-- [Image](#image)
+- [Demo](#demo)
 - [Code](#code)
 - [Learning](#learning)
 - [Author](#author)
@@ -35,6 +26,9 @@ This app is a simple tool for managing an online store. It helps with adding, up
 - [License](#license)
 
 ## Technology
+
+- Handlebars.js
+  [Learn about Handlebars.js](https://handlebarsjs.com/)
 
 - Express.js
   [Learn about Express.js](https://expressjs.com/)
@@ -62,59 +56,44 @@ This app is a simple tool for managing an online store. It helps with adding, up
 
 ## Usage
 
-This back-end app allows you to create, update, delete and get data on products, tags, and categories.
+1. Visit the website.
+2. Sign up for an account by creating a username and password.
+3. Log in with their account credentials.
+4. Create a blog post by clicking on the dashboard option in the navigation, then selecting the "Add a New Post" button and entering a title and contents for their post.
+5. View existing blog posts by clicking on the homepage option in the navigation.
+6. Comment on existing blog posts by clicking on a post title and entering a comment in the provided form.
+7. Delete or update their own blog posts by clicking on the dashboard option in the navigation, then selecting the post they want to modify and using the provided buttons.
+8. Log out of the site when finished.
 
-# Image
+# Demo
 
-![Alt Text](/Screenshot%202023-05-05%20at%2012.59.17%20AM.png)
+![Alt Text](/images/2023-05-09%2018.27.27.gif)
 
 ## Code
 
-I wanted to highlight this code snippet because it's really what this app is all about, which is relationships, and we just recently learned this. This code snippet sets up relationships between four models: Product, Category, Tag, and ProductTag. Products belong to a single Category, while Categories can have multiple Products. Products and Tags have a many-to-many relationship, connected through the ProductTag model. The foreign keys for each relationship are specified, and deleting a Category causes associated Products to be removed.
+I want to highlight this code because it demonstrates the use of Handlebars.js in creating a form for users to create a new blog post. Handlebars is a templating engine that allows you to create dynamic HTML templates with embedded JavaScript.In this code, we see that the form is created using HTML and has two fields: a title and a content field. The form also has a submit button that triggers the createBlogPost function in the createBlogPost.js script file.What's interesting about this code is that Handlebars is used to dynamically render the values for the name attributes of the input and textarea fields. This allows the server to access the values submitted by the user using the same name that is defined in the model schema, making it easier to handle form submissions.
 
 ```JavaScript
-// import models
-const Product = require("./Product");
-const Category = require("./Category");
-const Tag = require("./Tag");
-const ProductTag = require("./ProductTag");
-
-// Products belongsTo Category
-Product.belongsTo(Category, {
-  foreignKey: "category_id",
-  onDelete: "CASCADE",
-});
-// Categories have many Products
-Category.hasMany(Product, {
-  foreignKey: "category_id",
-});
-// Products belongToMany Tags (through ProductTag)
-Product.belongsToMany(Tag, {
-  through: ProductTag,
-  foreignKey: "product_id",
-});
-// Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, {
-  through: ProductTag,
-  foreignKey: "tag_id",
-});
-module.exports = {
-  Product,
-  Category,
-  Tag,
-  ProductTag,
-};
+<form class="create-blogpost-form">
+  <h2>Create a New Blog Post</h2>
+  <label for="blogpost-title">Title:</label>
+  <input type="text" id="blogpost-title" name="blogpost_title" required>
+  <label for="blogpost-content">Content:</label>
+  <textarea id="blogpost-content" name="blogpost_content" required></textarea>
+  <button id="create-blogpost" type="submit">Create Blog Post</button>
+</form>
+<script src="/js/createBlogPost.js"></script>
 
 
 ```
 
 ## Learning
 
-- Handling CRUD operations
-- Sequelize ORM
-- Environment variables and configuration
-- API testing with Insomnia
-- MVC
+-How to use Handlebars.js as a templating engine to render dynamic content on the server side.
+-How to use Sequelize as an ORM to interact with a relational database.
+-How to create authentication and authorization functionality using the express-session package.
+-How to organize your code using the Model-View-Controller (MVC) pattern.
+-How to deploy your application to a cloud hosting platform like Heroku.
 
 ## Author
 
@@ -126,7 +105,6 @@ Matthew Gibson
 
 ## Credits
 
-- Thanks to Manuel Nunes for helping me fix my database seeding problem
 - Thanks to all the instructors and the in-class examples/activities they provided were especially helpful for this application.
 
 ## Contributing

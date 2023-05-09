@@ -1,13 +1,16 @@
 async function createBlogPost(event) {
   event.preventDefault();
 
-  const title = document.querySelector("#blogpost-title").value.trim();
-  const content = document.querySelector("#blogpost-content").value.trim();
+  const title = document.querySelector("#post-title").value.trim();
+  const content = document.querySelector("#post-content").value.trim();
 
   if (title && content) {
     const response = await fetch("/api/blogposts", {
       method: "POST",
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify({
+        blogpost_title: title,
+        blogpost_content: content,
+      }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -19,6 +22,4 @@ async function createBlogPost(event) {
   }
 }
 
-document
-  .querySelector("#create-blogpost-form")
-  .addEventListener("submit", createBlogPost);
+document.querySelector("#post-form").addEventListener("submit", createBlogPost);

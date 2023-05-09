@@ -1,9 +1,59 @@
-<form class="edit-blogpost-form">
-  <h2>Edit Blog Post</h2>
-  <label for="blogpost-title">Title:</label>
-  <input type="text" id="blogpost-title" name="blogpost_title" value="{{blogpost_title}}" required>
-  <label for="blogpost-content">Content:</label>
-  <textarea id="blogpost-content" name="blogpost_content" required>{{blogpost_content}}</textarea>
-  <button id="update-blogpost" type="submit">Update Blog Post</button>
-</form>
-<script src="/js/editBlogPost.js"></script>
+{{!-- SHOW ORIGINAL BLOG POST --}}
+<div class="">
+  <div class="blogpost-card">
+    <div class="blogpost-card-header">
+      {{blogpost.blogpost_title}}
+    </div>
+    <div class="card-body">
+      <p>
+        {{blogpost.blogpost_content}}
+      </p>
+      <p>
+        Author:
+        {{blogpost.username}}
+        {{blogpost.creation_date}}
+      </p>
+    </div>
+  </div>
+
+  {{#if loggedIn}}
+  {{!-- EDIT BLOG POST --}}
+  <div class="add-blogpost-container">
+    <h2 class="custom-h2">Edit a post</h2>
+    <form class="edit-blogpost-form">
+      <label for="blogpost_title">
+        Title:
+      </label>
+      <br />
+      <textarea id="blogpost_title" name="blogpost_title" rows="2" cols="30">
+      {{blogpost.blogpost_title}}
+    </textarea>
+      <br />
+      <label for="blogpost_content">
+        Content:
+      </label>
+      <br />
+      <textarea id="blogpost_content" name="blogpost_content" rows="5" cols="30">
+      {{blogpost.blogpost_content}}
+    </textarea>
+      <div class="hidden">
+        <p class="logged-info">Username: <span id="username">{{username}}</span></p>
+        <p class="logged-info">Id: <span id="userid">{{userid}}</span></p>
+      </div>
+      <br />
+      <button class="btn btn-primary" type="submit" value="Submit">
+        Submit
+      </button>
+    </form>
+    <br />
+    <form class="delete-blogpost-form">
+      <button class="btn btn-primary" type="submit" value="Submit">
+        Delete this Post
+      </button>
+    </form>
+  </div>
+
+  {{/if}}
+  
+  <script src="/js/deleteBlogPost.js"></script>
+  <script src="/js/editBlogPost.js"></script>

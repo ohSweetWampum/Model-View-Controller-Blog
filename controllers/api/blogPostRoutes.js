@@ -21,12 +21,18 @@ router.get("/:id", async (req, res) => {
         .json({ message: "We couldn't find a blog post with that id" });
       return;
     }
+    console.log(allBlogpostData);
+    const blogpost = findBlogPost.get({ plain: true });
 
-    res.status(200).json(findBlogPost);
+    res.render("viewSingleBlogPost", {
+      blogpost,
+      loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 // Get all blog posts
 router.get("/", async (req, res) => {
   try {

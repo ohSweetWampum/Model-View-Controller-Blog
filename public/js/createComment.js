@@ -1,11 +1,11 @@
 async function createComment(event) {
   event.preventDefault();
 
-  const comment_content = document
-    .querySelector("#comment-content")
-    .value.trim();
+  const comment_content = document.querySelector(
+    'textarea[name="description"]'
+  ).value;
 
-  const blogPostId = document.querySelector("#comment-blogpost-id").value;
+  const blogPostId = document.querySelector('input[name="post-id"]').value;
 
   if (comment_content) {
     const response = await fetch("/api/comments", {
@@ -23,5 +23,5 @@ async function createComment(event) {
 }
 
 document
-  .querySelector("#create-comment-form")
+  .querySelector("#add-comment-form")
   .addEventListener("submit", createComment);

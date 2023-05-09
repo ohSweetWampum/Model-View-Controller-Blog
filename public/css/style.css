@@ -1,25 +1,224 @@
-header, .project:not(:last-child) {
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .no-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: #1b89bc;
-    text-decoration: none;
-    font-size: 100%;
-  }
-  
-  .no-button:hover {
-    color: #065b83;
-    text-decoration: underline;
-  }
-  
-  .dollar-amount {
-    color: #056605;
+/* Global styles */
+
+/* Box-sizing reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+nav a {
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+main {
+  padding: 20px;
+}
+
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+h2, h3 {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+button {
+  background-color: #333;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: #000;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.login-card {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.login-card h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-card button {
+  display: block;
+  margin: 20px auto 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.justify-space-between-md {
+  justify-content: space-between;
+}
+
+.blogposts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.blogpost {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  flex-basis: calc(33.33% - 20px);
+  margin: 0 10px 20px;
+  padding: 20px;
+}
+
+.blogpost h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dashboard-blogposts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.create-blogpost-form, .edit-blogpost-form {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.create-blogpost-form label, .edit-blogpost-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-blogpost-form input[type="text"], .edit-blogpost-form input[type="text"], 
+.create-blogpost-form textarea, .edit-blogpost-form textarea {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100 px;
+    height: 200px;
+    }
+    
+    .create-blogpost-form button[type="submit"], .edit-blogpost-form button[type="submit"] {
+    margin-top: 20px;
+    }
+    
+    .comment {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    }
+    
+    .comment p {
+    margin-bottom: 10px;
+    }
+    
+    .blogpost-details {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 20px;
+    }
+    
+    .blogpost-details h2 {
     font-weight: bold;
-    margin-left: -5px;
-  }
-  
+    margin-bottom: 10px;
+    }
+    
+    .blogpost-details p {
+    margin-bottom: 10px;
+    }
+    
+    .blogpost-details button {
+    display: block;
+    margin: 20px auto 0;
+    }
+    
+    .hidden {
+    display: none;
+    }
+    
+    /* Media queries */
+    
+    @media screen and (max-width: 768px) {
+    nav {
+    flex-direction: column;
+    align-items: center;
+    }
+    
+    nav a {
+    margin-bottom: 10px;
+    }
+    
+    .blogpost {
+    flex-basis: 100%;
+    }
+    
+    .create-blogpost-form, .edit-blogpost-form {
+    margin-top: 40px;
+    }
+    }
+

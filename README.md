@@ -89,11 +89,11 @@ I want to highlight this code because it demonstrates the use of Handlebars.js i
 
 ## Learning
 
--How to use Handlebars.js as a templating engine to render dynamic content on the server side.
--How to use Sequelize as an ORM to interact with a relational database.
--How to create authentication and authorization functionality using the express-session package.
--How to organize your code using the Model-View-Controller (MVC) pattern.
--How to deploy your application to a cloud hosting platform like Heroku.
+- How to use Handlebars.js as a templating engine to render dynamic content on the server side.
+- How to use Sequelize as an ORM to interact with a relational database.
+- How to create authentication and authorization functionality using the express-session package.
+- How to organize your code using the Model-View-Controller (MVC) pattern.
+- How to deploy your application to a cloud hosting platform like Heroku.
 
 ## Author
 

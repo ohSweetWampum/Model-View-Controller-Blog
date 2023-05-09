@@ -1,13 +1,16 @@
 async function createComment(event) {
   event.preventDefault();
 
-  const content = document.querySelector("#comment-content").value.trim();
+  const comment_content = document
+    .querySelector("#comment-content")
+    .value.trim();
+
   const blogPostId = document.querySelector("#comment-blogpost-id").value;
 
-  if (content) {
+  if (comment_content) {
     const response = await fetch("/api/comments", {
       method: "POST",
-      body: JSON.stringify({ content, blogPostId }),
+      body: JSON.stringify({ comment_content, blogPostId }),
       headers: { "Content-Type": "application/json" },
     });
 

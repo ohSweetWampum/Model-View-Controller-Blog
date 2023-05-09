@@ -1,4 +1,4 @@
-<div class="blogpost">
+{{!-- <div class="blogpost">
   <h2>{{blogpost_title}}</h2>
   <p>By {{username}}</p>
   <p>{{creation_date}}</p>
@@ -11,3 +11,57 @@
 {{/if}}
 <h3>Comments:</h3>
 {{> commentDetails}}
+
+ --}}
+
+
+
+
+<div class="content">
+  <div class="blogpost">
+    <div class="blogpost-header">
+      <h2>{{blogpost.blogpost_title}}</h2>
+      <p>By {{blogpost.username}}</p>
+      <p>{{blogpost.creation_date}}</p>
+    </div>
+    <div class="blogpost-body">
+      <p>{{blogpost.blogpost_content}}</p>
+      {{#if isusername}}
+      <div class="blogpost-edit">
+        <a href="/edit/{{id}}">Edit</a>
+        <button id="delete-blogpost">Delete</button>
+        <script src="/js/deleteBlogPost.js"></script>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <h3>Comments:</h3>
+  <div class="comments">
+    {{#each comments as |comment|}}
+      <div class="comment">
+        <p>Comment by {{comment.username}}</p>
+        <p>{{comment.comment_date}}</p>
+        <p>{{comment.comment_content}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+  {{#if loggedIn}}
+    <div class="add-comment">
+      <h2>Add a comment!</h2>
+      <form class="add-comment-form">
+        <div class="form-group">
+          <label for="description">Comment body:</label>
+          <textarea id="description" name="description" rows="5" cols="30">{{comment_content}}</textarea>
+        </div>
+        <div class="hidden">
+          <p class="logged-info">Username: <span id="username">{{username}}</span></p>
+          <p class="logged-info">Id: <span id="userid">{{user_id}}</span></p>
+        </div>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+    </div>
+    <script src="/js/createComment.js"></script>
+  {{/if}}
+</div>

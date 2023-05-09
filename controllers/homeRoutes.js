@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { BlogPost, User } = require("../models");
+const { BlogPost, User, Comment } = require("../models");
+
 const { authRequired } = require("../utils/authenticator");
 
 // Render homepage with all blog posts
@@ -31,7 +32,12 @@ router.get("/blogposts/:id", async (req, res) => {
     const findBlogPost = await BlogPost.findByPk(req.params.id, {
       include: [
         { model: User, attributes: ["username"] },
-        // Add any other associations here, e.g., comments
+        {
+          model: Comment,
+          as: "comments",
+          attributes: ["comment_content", "creation_date", "user_id"],
+          include: [{ model: User, attributes: ["username"] }],
+        },
       ],
     });
 
@@ -80,7 +86,7 @@ router.get("/dashboard", authRequired, async (req, res) => {
     res.status(500).json(err);
   }
 });
-// GET for new article page
+// GET for new blogpost page
 router.get("/new", authRequired, async (req, res) => {
   try {
     res.render("createBlogPost", {

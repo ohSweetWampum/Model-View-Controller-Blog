@@ -5,12 +5,12 @@ async function createComment(event) {
     'textarea[name="description"]'
   ).value;
 
-  const blogPostId = document.querySelector('input[name="post-id"]').value;
+  const blogpost_id = document.querySelector('input[name="post-id"]').value;
 
   if (comment_content) {
     const response = await fetch("/api/comments", {
       method: "POST",
-      body: JSON.stringify({ comment_content, blog_post_id: blogPostId }),
+      body: JSON.stringify({ comment_content, blogpost_id }),
       headers: { "Content-Type": "application/json" },
     });
 

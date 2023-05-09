@@ -12,7 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({
-  helpers,
+  helpers: {
+    format_date: helpers.formatDate,
+    format_time: helpers.formatTime,
+  },
   partialsDir: path.join(__dirname, "views/partials"),
 });
 

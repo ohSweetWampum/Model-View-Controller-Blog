@@ -1,9 +1,9 @@
 async function editBlogPost(event) {
   event.preventDefault();
 
-  const id = event.target.getAttribute("data-blogpost-id");
-  const title = document.querySelector("#edit-blogpost-title").value.trim();
-  const content = document.querySelector("#edit-blogpost-content").value.trim();
+  const id = window.location.pathname.split("/")[2];
+  const title = document.querySelector("#blogpost_title").value.trim();
+  const content = document.querySelector("#blogpost_content").value.trim();
 
   if (id && title && content) {
     const response = await fetch(`/api/blogposts/${id}`, {
@@ -19,7 +19,6 @@ async function editBlogPost(event) {
     }
   }
 }
-
 document
-  .querySelector("#edit-blogpost-form")
+  .querySelector("form.edit-blogpost-form")
   .addEventListener("submit", editBlogPost);

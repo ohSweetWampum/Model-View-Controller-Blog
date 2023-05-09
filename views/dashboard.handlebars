@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+</head>
+<body>
 <main>
   <div class="container">
     <div class="row">
@@ -17,15 +25,15 @@
       </div>
       <div class="col-md-6 mb-4">
         <h1>Your Posts</h1>
-        {{#if posts.length}}
+        {{#if userBlogposts.length}}
           <ul class="list-group">
-            {{#each posts}}
+            {{#each userBlogposts}}
               <li class="list-group-item">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="post-title">{{title}}</h4>
-                    <p class="post-content">{{content}}</p>
-                    <p class="post-author">Authored by:{{user.username}} on {{format_date createdAt}}</p>
+                    <h4 class="post-title">{{blogpost_title}}</h4>
+                    <p class="post-content">{{blogpost_content}}</p>
+                    <p class="post-author">Authored by:{{user.username}} on {{format_date creation_date}}</p>
                     <a href="/dashboard/edit/{{id}}" class="btn btn-primary">Edit</a>
                   </div>
                 </div>
@@ -40,6 +48,7 @@
   </div>
 </main>
 
-
-
 <script src="/js/createBlogPost.js"></script>
+</body>
+</html>
+

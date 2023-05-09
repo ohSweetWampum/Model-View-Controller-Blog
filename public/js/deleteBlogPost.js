@@ -1,7 +1,7 @@
 async function deleteBlogPost(event) {
   event.preventDefault();
 
-  const id = event.target.getAttribute("data-blogpost-id");
+  const id = window.location.pathname.split("/")[3];
 
   if (id) {
     const response = await fetch(`/api/blogposts/${id}`, {
@@ -16,6 +16,6 @@ async function deleteBlogPost(event) {
   }
 }
 
-document.querySelectorAll(".delete-blogpost-btn").forEach((btn) => {
-  btn.addEventListener("click", deleteBlogPost);
-});
+document
+  .querySelector(".delete-blogpost-form")
+  .addEventListener("submit", deleteBlogPost);

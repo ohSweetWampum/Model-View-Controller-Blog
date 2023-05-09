@@ -46,21 +46,18 @@ router.get("/", async (req, res) => {
 });
 
 // Create a new blog post
-router.post(
-  "/",
-  /*authRequired,*/ async (req, res) => {
-    try {
-      const newBlogPost = await BlogPost.create({
-        ...req.body,
-        user_id: req.session.user_id,
-      });
+router.post("/", authRequired, async (req, res) => {
+  try {
+    const newBlogPost = await BlogPost.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
 
-      res.status(200).json(newBlogPost);
-    } catch (err) {
-      res.status(400).json(err);
-    }
+    res.status(200).json(newBlogPost);
+  } catch (err) {
+    res.status(400).json(err);
   }
-);
+});
 console.log("router:", router);
 console.log("authRequired:", authRequired);
 console.log("BlogPost:", BlogPost);

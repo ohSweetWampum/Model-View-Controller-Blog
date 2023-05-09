@@ -1,7 +1,7 @@
 async function editBlogPost(event) {
   event.preventDefault();
 
-  const id = window.location.pathname.split("/")[2];
+  const id = window.location.pathname.split("/")[3];
   const blogpost_title = document.querySelector("#blogpost_title").value.trim();
   const blogpost_content = document
     .querySelector("#blogpost_content")
